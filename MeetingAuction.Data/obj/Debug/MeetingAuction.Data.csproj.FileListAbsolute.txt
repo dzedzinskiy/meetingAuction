@@ -1,0 +1,7 @@
+E:\workspace\MeetingAuction\MeetingAuction.Data\bin\Debug\MeetingAuction.Data.dll
+E:\workspace\MeetingAuction\MeetingAuction.Data\bin\Debug\MeetingAuction.Data.pdb
+E:\workspace\MeetingAuction\MeetingAuction.Data\bin\Debug\EntityFramework.dll
+E:\workspace\MeetingAuction\MeetingAuction.Data\bin\Debug\EntityFramework.xml
+E:\workspace\MeetingAuction\MeetingAuction.Data\obj\Debug\MeetingAuction.Data.csprojResolveAssemblyReference.cache
+E:\workspace\MeetingAuction\MeetingAuction.Data\obj\Debug\MeetingAuction.Data.dll
+E:\workspace\MeetingAuction\MeetingAuction.Data\obj\Debug\MeetingAuction.Data.pdb

@@ -1,0 +1,41 @@
+﻿@model IList<MeetingAuction.Data.Entities.UsersProfile>
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>Users</h2>
+<table id="people" border="1">
+    <caption>Список усіх користувачів</caption>
+    <tr>
+        <th>Прізвище</th>
+        <th>Ім'я</th>
+        <th>Країна</th>
+        <th>Місто</th>
+        <th>Телефон</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.LastName</td>
+            <td>@user.FirstName</td>
+            @if (@user.Address != null)
+            {
+                <td>@user.Address.Country</td>
+                <td>@user.Address.City</td>
+            }
+            else
+            {
+                <td>---</td>
+                <td>---</td>
+            }
+            <td>@user.PhoneNumber</td>
+        </tr>
+    }
+</table>
+
+<style>
+    #people th,td {
+        padding: 5px 10px;
+        text-align: center;
+    }
+</style>

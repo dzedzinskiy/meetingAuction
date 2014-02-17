@@ -1,0 +1,13 @@
+﻿@using MeetingAuction.Data.Entities
+@model System.Collections.Generic.IList<MeetingAuction.Data.Entities.Address>
+
+@{
+    ViewBag.Title = "Addresses";
+}
+
+<h2>Addresses</h2>
+
+@foreach (var address in Model)
+{
+    <p>@address.GetAddress(new DefaultAddressFormatter())</p>
+}
