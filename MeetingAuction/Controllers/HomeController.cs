@@ -61,6 +61,7 @@ namespace MeetingAuction.Controllers
             return View(users);
         }
 
+        [AllowAnonymous]
         [Route("resource/navbar")]
         public ActionResult Navbar(bool isProfilePage = false)
         {

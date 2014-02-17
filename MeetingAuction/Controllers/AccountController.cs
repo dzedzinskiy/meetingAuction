@@ -26,7 +26,6 @@ namespace MeetingAuction.Controllers
 
         //
         // GET: /Account/Login
-        [Route("login")]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -36,7 +35,6 @@ namespace MeetingAuction.Controllers
 
         //
         // POST: /Account/Login
-        [Route("login")]
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -62,7 +60,6 @@ namespace MeetingAuction.Controllers
 
         //
         // GET: /Account/Register
-        [Route("register")]
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -71,7 +68,6 @@ namespace MeetingAuction.Controllers
 
         //
         // POST: /Account/Register
-        [Route("register")]
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -108,7 +104,6 @@ namespace MeetingAuction.Controllers
 
         //
         // POST: /Account/Disassociate
-        [Route("disassociate")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Disassociate(string loginProvider, string providerKey)
@@ -128,7 +123,6 @@ namespace MeetingAuction.Controllers
 
         //
         // GET: /Account/Manage
-        [Route("manage")]
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -144,7 +138,6 @@ namespace MeetingAuction.Controllers
 
         //
         // POST: /Account/Manage
-        [Route("manage")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Manage(ManageUserViewModel model)
@@ -196,7 +189,6 @@ namespace MeetingAuction.Controllers
 
         //
         // POST: /Account/ExternalLogin
-        [Route("ExternalLogin")]
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -208,7 +200,6 @@ namespace MeetingAuction.Controllers
 
         //
         // GET: /Account/ExternalLoginCallback
-        [Route("ExternalLoginCallback")]
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -236,7 +227,6 @@ namespace MeetingAuction.Controllers
 
         //
         // POST: /Account/LinkLogin
-        [Route("LinkLogin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
@@ -247,7 +237,6 @@ namespace MeetingAuction.Controllers
 
         //
         // GET: /Account/LinkLoginCallback
-        [Route("LinkLoginCallback")]
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
@@ -265,7 +254,6 @@ namespace MeetingAuction.Controllers
 
         //
         // POST: /Account/ExternalLoginConfirmation
-        [Route("ExternalLoginConfirmation")]
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -304,7 +292,6 @@ namespace MeetingAuction.Controllers
 
         //
         // POST: /Account/LogOff
-        [Route("logoff")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -313,16 +300,12 @@ namespace MeetingAuction.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Account/ExternalLoginFailure
-        [Route("ExternalLoginFailure")]
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
             return View();
         }
 
-        [Route("RemoveAccountList")]
         [ChildActionOnly]
         public ActionResult RemoveAccountList()
         {

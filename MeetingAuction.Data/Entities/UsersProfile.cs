@@ -43,9 +43,16 @@ namespace MeetingAuction.Data.Entities
         public string PhoneType { get; set; }
         public string PhoneNumber { get; set; }
         public int? AddressId { get; set; }
+        public string AvatarPath { get; set; }
+        public string WorkPost { get; set; }
+
+        public int WorkProfileId { get; set; }
 
         [ForeignKey("AddressId")]
         public Address Address { get; set; }
+
+        [ForeignKey("WorkProfileId")]
+        public WorkProfile WorkProfile { get; set; }
 
 
         public string RunFullValidation()

@@ -49,6 +49,7 @@
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\PasswordTools.cs" />
     <Compile Include="Entities\UsersProfile.cs" />
+    <Compile Include="Entities\WorkProfile.cs" />
     <Compile Include="Interfaces\IAddress.cs" />
     <Compile Include="Interfaces\IAddressFormatter.cs" />
     <Compile Include="Interfaces\IAddressRepository.cs" />
