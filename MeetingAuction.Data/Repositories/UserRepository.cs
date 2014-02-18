@@ -23,12 +23,13 @@ namespace MeetingAuction.Data.Repositories
             var profile = _repo.SearchFor(_ => _.Login == login);
             if (joinAll)
             {
-                profile.Include(_ => _.Profile)
-                             .Include(_ => _.Profile.Phones)
-                             .Include(_ => _.Profile.Images)
-                             .Include(_ => _.Profile.SchoolDates)
-                             .Include(_ => _.Profile.UniversityDates)
-                             .Include(_ => _.Profile.MedicalCard);
+                profile = profile.Include(_ => _.Profile)
+                    .Include(_ => _.Profile.Phones)
+                    .Include(_ => _.Profile.Images)
+                    .Include(_ => _.Profile.SchoolDates)
+                    .Include(_ => _.Profile.UniversityDates)
+                    .Include(_ => _.Profile.Address)
+                    .Include(_ => _.Profile.MedicalCard);
             }
             return profile.FirstOrDefault();
         }
@@ -38,14 +39,15 @@ namespace MeetingAuction.Data.Repositories
             IQueryable<User> usersProfiles = _repo.GetAll();
             if (joinAll)
             {
-                usersProfiles.Include(_ => _.Profile)
-                             .Include(_ => _.Profile.Phones)
-                             .Include(_ => _.Profile.Images)
-                             .Include(_ => _.Profile.SchoolDates)
-                             .Include(_=>_.Profile.UniversityDates)
-                             .Include(_=>_.Profile.MedicalCard);
+                usersProfiles = usersProfiles.Include(_ => _.Profile)
+                    .Include(_ => _.Profile.Phones)
+                    .Include(_ => _.Profile.Images)
+                    .Include(_ => _.Profile.SchoolDates)
+                    .Include(_ => _.Profile.UniversityDates)
+                    .Include(_ => _.Profile.Address)
+                    .Include(_ => _.Profile.MedicalCard);
             }
-            if (count>0) return usersProfiles.Take(count).ToList();
+            if (count > 0) return usersProfiles.Take(count).ToList();
 
             return usersProfiles.ToList();
         }

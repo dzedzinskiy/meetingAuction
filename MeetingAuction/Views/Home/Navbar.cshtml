@@ -1,4 +1,4 @@
-﻿@model MeetingAuction.Controllers.NavbarViewModel
+﻿@model MeetingAuction.Data.Interfaces.IUser
 @{
     Layout = null;
 }
@@ -6,36 +6,47 @@
 <div id="header" class="skel-panels-fixed">
     <div class="top">
         <!-- Logo -->
-        <div id="logo">
-            <span class="image avatar48"><img src="@Model.ImageLink" alt="" /></span>
-            <h1 id="title">@Model.Name</h1>
-            <span class="byline">Hyperspace Engineer</span>
-        </div>
-        <!-- Nav -->
-        <nav id="nav1">
-            <ul>
-                <li>@Html.ActionLink("My page", "MyPage", "Home", new { login = Model.Name }, null)</li>
-                <li>@Html.ActionLink("Feed", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                <li>@Html.ActionLink("People", "Users", "Home")</li>
-            </ul>
-        </nav>
-        @if (Model.IsProfilePage)
-        {
+        <div style="float:left;display: block; width: 100%;">
+            <div style="float: left;">
+                <img src="@Model.Profile.AvatarPath" width="120" height="120" style="margin:15px;" alt="" />
+            </div>
             <!-- Nav -->
-            <nav id="nav">
+            <nav id="nav1" style="float:right">
                 <ul>
-                    <li><a href="#top" id="top-link" class="skel-panels-ignoreHref"><span class="fa fa-home">Intro</span></a></li>
-                    <li><a href="#portfolio" id="portfolio-link" class="skel-panels-ignoreHref"><span class="fa fa-th">Portfolio</span></a></li>
-                    <li><a href="#about" id="about-link" class="skel-panels-ignoreHref"><span class="fa fa-user">About Me</span></a></li>
-                    <li><a href="#contact" id="contact-link" class="skel-panels-ignoreHref"><span class="fa fa-envelope">Contact</span></a></li>
-
+                    <li>@Html.ActionLink("Профіль", "MyPage", "Home", new { login = Model.Login }, null)</li>
+                    <li>@Html.ActionLink("Новини", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Пошук", "About", "Home")</li>
+                    <li>@Html.ActionLink("Люди", "Users", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
             </nav>
-        }
+        </div>
+                
+        <div style="float:left;display: block; width: 100%;">
+            <span class="text" style="float: left;display: block;width: 100%;">
+                @Html.ActionLink(Model.FullName, "MyPage", "Home", new { login = Model.Login })
+            </span>
+            <span class="text" style="float: left;display: block;width: 100%; line-height: 5px;">
+                @Model.Profile.WorkingPosition
+            </span>
+        </div>
+        
+        <div style="float:left;display: block; width: 100%; padding-top: 25px;">
+            @if (ViewBag.IsProfilePage)
+            {
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="#top" id="top-link" class="skel-panels-ignoreHref"><span class="fa fa-home">Вступ</span></a></li>
+                        <li><a href="#portfolio" id="portfolio-link" class="skel-panels-ignoreHref"><span class="fa fa-th">Портфоліо</span></a></li>
+                        <li><a href="#about" id="about-link" class="skel-panels-ignoreHref"><span class="fa fa-user">Про мене</span></a></li>
+                        <li><a href="#contact" id="contact-link" class="skel-panels-ignoreHref"><span class="fa fa-envelope">Зв'язок</span></a></li>
+                    </ul>
+                </nav>
+            }
+        </div>
     </div>
-    <div class="bottom">
+    @*<div class="bottom">
         <!-- Social Icons -->
         <ul class="icons">
             <li><a href="#" class="fa fa-twitter solo"><span>Twitter</span></a></li>
@@ -44,10 +55,68 @@
             <li><a href="#" class="fa fa-dribbble solo"><span>Dribbble</span></a></li>
             <li><a href="#" class="fa fa-envelope solo"><span>Email</span></a></li>
         </ul>
-    </div>
+    </div>*@
 </div>
 
+
+@*<div id="header" class="skel-panels-fixed">
+
+    <div class="top">
+
+        <!-- Logo -->
+        <div id="logo">
+            <span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+            <h1 id="title">Jane Doe</h1>
+            <span class="byline">Hyperspace Engineer</span>
+        </div>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="#top" id="top-link" class="skel-panels-ignoreHref"><span class="fa fa-home">Intro</span></a></li>
+                <li><a href="#portfolio" id="portfolio-link" class="skel-panels-ignoreHref"><span class="fa fa-th">Portfolio</span></a></li>
+                <li><a href="#about" id="about-link" class="skel-panels-ignoreHref"><span class="fa fa-user">About Me</span></a></li>
+                <li><a href="#contact" id="contact-link" class="skel-panels-ignoreHref"><span class="fa fa-envelope">Contact</span></a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+    <div class="bottom">
+
+        <!-- Social Icons -->
+        <ul class="icons">
+            <li><a href="#" class="fa fa-twitter solo"><span>Twitter</span></a></li>
+            <li><a href="#" class="fa fa-facebook solo"><span>Facebook</span></a></li>
+            <li><a href="#" class="fa fa-github solo"><span>Github</span></a></li>
+            <li><a href="#" class="fa fa-dribbble solo"><span>Dribbble</span></a></li>
+            <li><a href="#" class="fa fa-envelope solo"><span>Email</span></a></li>
+        </ul>
+
+    </div>
+
+</div>*@
+
 <style>
+     #header .text {
+         font-size: 15px;
+         padding: 0 10px;
+         color: rgba(255,255,255,0.5);
+         text-align: center;
+     }
+
+     #header .minimized {
+         padding: 0;
+         margin: 0;
+         line-height: 0;
+     }
+
+     #nav1 {
+         padding-top: 15px;
+         width: 90px;
+         float: right;
+     }
+
     #nav1 ul li a.active {
         background: #000000;
         background: rgba(0,0,0,0.15);
@@ -58,7 +127,7 @@
 
     #nav1 ul li a {
         display: block;
-        padding: 0.5em 1.5em 0.5em 1.5em;
+        margin: 0;
         color: #ffffff;
         color: rgba(255,255,255,0.5);
         text-decoration: none;
@@ -69,13 +138,13 @@
         -o-transition: none;
         -ms-transition: none;
         transition: none;
-    }
-
-    #nav1 ul li a {
         position: relative;
         display: block;
-        font-size: 0.8em;
+        font-size: 15px;
+        line-height: 20px;
+        padding: 2px 0;
     }
+
     #nav ul li a:before {
         position: absolute;
         left: 0;
@@ -84,4 +153,18 @@
         width: 1.25em;
         line-height: 1.75em;
     }
+    #nav ul li a {
+        font-size: 20px;
+        padding: 2px 0;
+    }
+    #nav ul li a span {
+        line-height: 20px;
+        font-size: 15px;
+    }
+
+    #nav,#nav1 ul {
+        margin: 0;
+        padding-right: 15px;
+    }
+
 </style>
