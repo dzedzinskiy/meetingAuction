@@ -14,7 +14,7 @@ namespace MeetingAuction.App_Start
             this.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
             this.Bind<IAddressRepository>().To<AddressRepository>();
             this.Bind<IAddress>().To<Address>();
-            this.Bind<IUsersProfile>().To<UsersProfile>();
+            this.Bind<IUser>().To<User>();
         }
     }
 }

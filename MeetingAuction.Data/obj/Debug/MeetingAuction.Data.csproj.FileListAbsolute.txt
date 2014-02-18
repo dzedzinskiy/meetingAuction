@@ -5,3 +5,16 @@ E:\workspace\MeetingAuction\MeetingAuction.Data\bin\Debug\EntityFramework.xml
 E:\workspace\MeetingAuction\MeetingAuction.Data\obj\Debug\MeetingAuction.Data.csprojResolveAssemblyReference.cache
 E:\workspace\MeetingAuction\MeetingAuction.Data\obj\Debug\MeetingAuction.Data.dll
 E:\workspace\MeetingAuction\MeetingAuction.Data\obj\Debug\MeetingAuction.Data.pdb
+E:\MyFolder\meetingAuction\MeetingAuction.Data\bin\Debug\MeetingAuction.Data.dll
+E:\MyFolder\meetingAuction\MeetingAuction.Data\bin\Debug\MeetingAuction.Data.pdb
+E:\MyFolder\meetingAuction\MeetingAuction.Data\bin\Debug\EntityFramework.dll
+E:\MyFolder\meetingAuction\MeetingAuction.Data\bin\Debug\mscorlib.dll
+E:\MyFolder\meetingAuction\MeetingAuction.Data\bin\Debug\EntityFramework.xml
+E:\MyFolder\meetingAuction\MeetingAuction.Data\bin\Debug\ru\mscorlib.resources.dll
+E:\MyFolder\meetingAuction\MeetingAuction.Data\bin\Debug\normidna.nlp
+E:\MyFolder\meetingAuction\MeetingAuction.Data\bin\Debug\normnfc.nlp
+E:\MyFolder\meetingAuction\MeetingAuction.Data\bin\Debug\normnfd.nlp
+E:\MyFolder\meetingAuction\MeetingAuction.Data\bin\Debug\normnfkc.nlp
+E:\MyFolder\meetingAuction\MeetingAuction.Data\bin\Debug\normnfkd.nlp
+E:\MyFolder\meetingAuction\MeetingAuction.Data\obj\Debug\MeetingAuction.Data.dll
+E:\MyFolder\meetingAuction\MeetingAuction.Data\obj\Debug\MeetingAuction.Data.pdb

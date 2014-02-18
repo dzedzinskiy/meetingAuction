@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -7,18 +8,22 @@ using MeetingAuction.Data.Interfaces;
 
 namespace MeetingAuction.Data.Entities
 {
-    [Table("UsersProfile")]
-    public class UsersProfile : IUsersProfile
+    [Table("Users")]
+    public class User : IUser
     {
+        #region constants
         public const string UserNameAlreadyExistsMessage = "Provided User Name already exists.";
         public const string InvalidUserName = "User Name is empty or contains invalid characters or over 256 characters long.";
         public const string WrongEmailFormatFlag = "Email format flag accepts only 0 or 1 as its value.";
         public const string DuplicatedEmail = "Provided e-mail is already used.";
+        #endregion
 
         [Key]
         public int Id { get; set; }
         public string Login { get; set; }
+        public string Email { get; set; }
         public string FirstName { get; set; }
+        public string FatherName { get; set; }
         public string LastName { get; set; }
         public string NickName { get; set; }
         public string FullName {
@@ -29,10 +34,9 @@ namespace MeetingAuction.Data.Entities
                     .ToString();
             }
         }
-        public int Age { get; set; }
-        public bool Male { get; set; }
-        public string Email { get; set; }
-        public int EmailFormat { get; set; }
+        public bool IsMale { get; set; }
+        public bool IsAdmin { get; set; }
+        public string Notes { get; set; }
         public string TimeZoneInfoId { get; set; }
         public string UserDateFormat { get; set; }
         public string UserTimeFormat { get; set; }
@@ -40,37 +44,28 @@ namespace MeetingAuction.Data.Entities
         public string PasswordQuestion { get; set; }
         public string PasswordAnswer { get; set; }
         public bool IsActive { get; set; }
-        public string PhoneType { get; set; }
-        public string PhoneNumber { get; set; }
-        public int? AddressId { get; set; }
-        public string AvatarPath { get; set; }
-        public string WorkPost { get; set; }
-
-        public int WorkProfileId { get; set; }
-
-        [ForeignKey("AddressId")]
-        public Address Address { get; set; }
-
-        [ForeignKey("WorkProfileId")]
-        public WorkProfile WorkProfile { get; set; }
-
+        public DateTime CreatedDate { get; set; }
+        public int? ProfileId { get; set; }
+        
+        [ForeignKey("ProfileId")]
+        public Profile Profile { get; set; }
 
         public string RunFullValidation()
         {
-            StringBuilder validationResult = new StringBuilder();
+            var validationResult = new StringBuilder();
 
-            HashSet<string> errors = new HashSet<string>();
-
-            errors.Add(ValidateUserName(FullName));
-            errors.Add(ValidateUserRealNames(FirstName, "First Name"));
-            errors.Add(ValidateUserRealNames(LastName, "Last Name"));
-            errors.Add(PasswordTools.ValidatePasswordWithMessage(Password));
-            errors.Add(ValidateNotNullAndLenght(PasswordQuestion, "Security Question", 256));
-            errors.Add(ValidateNotNullAndLenght(PasswordAnswer, "Security Answer", 128));
-            errors.Add(ValidateNotNullAndLenght(TimeZoneInfoId, "Time Zone", 100));
-            errors.Add(ValidateNotNullAndLenght(UserDateFormat, "Date Format", 50));
-            errors.Add(ValidateNotNullAndLenght(UserTimeFormat, "Time Format", 50));
-            errors.Add(ValidateMailFormat(EmailFormat));
+            var errors = new HashSet<string>
+                {
+                    ValidateUserName(FullName),
+                    ValidateUserRealNames(FirstName, "First Name"),
+                    ValidateUserRealNames(LastName, "Last Name"),
+                    PasswordTools.ValidatePasswordWithMessage(Password),
+                    ValidateNotNullAndLenght(PasswordQuestion, "Security Question", 256),
+                    ValidateNotNullAndLenght(PasswordAnswer, "Security Answer", 128),
+                    ValidateNotNullAndLenght(TimeZoneInfoId, "Time Zone", 100),
+                    ValidateNotNullAndLenght(UserDateFormat, "Date Format", 50),
+                    ValidateNotNullAndLenght(UserTimeFormat, "Time Format", 50)
+                };
 
             errors.Remove(string.Empty);
 

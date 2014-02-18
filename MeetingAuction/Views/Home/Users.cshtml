@@ -1,4 +1,4 @@
-﻿@model IList<MeetingAuction.Data.Entities.UsersProfile>
+﻿@model IList<MeetingAuction.Data.Entities.User>
 @{
     ViewBag.Title = "Users";
 }
@@ -18,17 +18,17 @@
         <tr>
             <td>@user.LastName</td>
             <td>@user.FirstName</td>
-            @if (@user.Address != null)
+            @if (@user.Profile.Address != null)
             {
-                <td>@user.Address.Country</td>
-                <td>@user.Address.City</td>
+                <td>@user.Profile.Address.Country</td>
+                <td>@user.Profile.Address.City</td>
             }
             else
             {
                 <td>---</td>
                 <td>---</td>
             }
-            <td>@user.PhoneNumber</td>
+            <td>@user.Profile.Phone</td>
         </tr>
     }
 </table>

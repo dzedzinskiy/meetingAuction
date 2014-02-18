@@ -80,16 +80,16 @@ namespace MeetingAuction.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    var usersProfile = new UsersProfile
+                    var usersProfile = new User
                     {
                         Login = model.Login,
                         Email = model.Email,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         Password = model.Password,
-                        Male = model.Male
+                        IsMale = model.Male
                     };
-                    _usersRepository.SaveUsersProfile(usersProfile);
+                    _usersRepository.SaveUser(usersProfile);
                     return RedirectToAction("Index", "Home");
                 }
                 else

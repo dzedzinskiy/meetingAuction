@@ -27,7 +27,7 @@ namespace MeetingAuction.Controllers
         public ActionResult MyPage(string login)
         {
             ViewBag.Login = login;
-            UsersProfile user = _usersRepository.GetUserProfileByLogin(login);
+            User user = _usersRepository.GetUserByLogin(login, true);
             if (user == null)
                 RedirectToAction("Index");
             return View(user);
@@ -57,7 +57,7 @@ namespace MeetingAuction.Controllers
         [Route("people")]
         public ActionResult Users()
         {
-            IList<UsersProfile> users = _usersRepository.GetUsersProfiles();
+            IList<User> users = _usersRepository.GetUsers();
             return View(users);
         }
 
@@ -65,12 +65,14 @@ namespace MeetingAuction.Controllers
         [Route("resource/navbar")]
         public ActionResult Navbar(bool isProfilePage = false)
         {
+            const string login = "dzedzinskiy";
+            User user = _usersRepository.GetUserByLogin(login, true);
             var model = new NavbarViewModel
             {
-                ImageLink =
+                ImageLink = //user.AvatarPath,
                     "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT-ovtiw7JE9hNdXYuzTJotoUth6Z5JmWn7qtQgfmd8RhsRPDqN",
                 IsProfilePage = isProfilePage,
-                Name = "John Stephan"
+                Name = "Mykola Dzedzinskiy"//user.FullName
             };
             return View(model);
         }

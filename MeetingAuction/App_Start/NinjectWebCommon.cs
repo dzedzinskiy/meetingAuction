@@ -52,7 +52,7 @@ namespace MeetingAuction.App_Start
             kernel.Bind<IAddressRepository>().To<AddressRepository>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IAddress>().To<Address>();
-            kernel.Bind<IUsersProfile>().To<UsersProfile>();
+            kernel.Bind<IUser>().To<User>();
             kernel.Bind<IRepository<Address>>().To<Repository<Address>>();
             RegisterServices(kernel);
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory(kernel));

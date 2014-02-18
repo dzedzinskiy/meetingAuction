@@ -5,8 +5,8 @@ namespace MeetingAuction.Data.Interfaces
 {
     public interface IUserRepository
     {
-        IList<UsersProfile> GetUsersProfiles(int count = 0);
-        UsersProfile GetUserProfileByLogin(string login);
-        UsersProfile SaveUsersProfile(UsersProfile usersProfile);
+        IList<User> GetUsers(int count = 0, bool joinAll = false);
+        User GetUserByLogin(string login, bool joinAll = false);
+        bool SaveUser(User user);
     }
 }

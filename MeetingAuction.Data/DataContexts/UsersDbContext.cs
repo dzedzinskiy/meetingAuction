@@ -9,6 +9,6 @@ namespace MeetingAuction.Data.DataContexts
             : base("DefaultConnection")
         {
         }
-        public IDbSet<UsersProfile> Addresses { get; set; }
+        public IDbSet<User> Addresses { get; set; }
     }
 }

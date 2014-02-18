@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using MeetingAuction.Data.DataContexts;
@@ -9,35 +10,59 @@ namespace MeetingAuction.Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly UsersDbContext db = new UsersDbContext();
-        private readonly Repository<UsersProfile> repo;
+        private readonly UsersDbContext _db = new UsersDbContext();
+        private readonly Repository<User> _repo;
 
         public UserRepository()
         {
-            repo = new Repository<UsersProfile>(db);
+            _repo = new Repository<User>(_db);
         }
 
-        public UsersProfile GetUserProfileByLogin(string login)
+        public User GetUserByLogin(string login, bool joinAll = false)
         {
-            var profile = repo.GetAll().FirstOrDefault(_ => _.Login == login);
-            return profile;
+            var profile = _repo.SearchFor(_ => _.Login == login);
+            if (joinAll)
+            {
+                profile.Include(_ => _.Profile)
+                             .Include(_ => _.Profile.Phones)
+                             .Include(_ => _.Profile.Images)
+                             .Include(_ => _.Profile.SchoolDates)
+                             .Include(_ => _.Profile.UniversityDates)
+                             .Include(_ => _.Profile.MedicalCard);
+            }
+            return profile.FirstOrDefault();
         }
 
-        public IList<UsersProfile> GetUsersProfiles(int count = 0)
+        public IList<User> GetUsers(int count = 0, bool joinAll = false)
         {
-            var usersProfiles = repo.GetAll()
-                .Include(_=>_.Address)
-                .ToList();
-            if (count>0) 
-                return usersProfiles.Take(count).ToList();
-            return usersProfiles;
+            IQueryable<User> usersProfiles = _repo.GetAll();
+            if (joinAll)
+            {
+                usersProfiles.Include(_ => _.Profile)
+                             .Include(_ => _.Profile.Phones)
+                             .Include(_ => _.Profile.Images)
+                             .Include(_ => _.Profile.SchoolDates)
+                             .Include(_=>_.Profile.UniversityDates)
+                             .Include(_=>_.Profile.MedicalCard);
+            }
+            if (count>0) return usersProfiles.Take(count).ToList();
+
+            return usersProfiles.ToList();
         }
 
-        public UsersProfile SaveUsersProfile(UsersProfile usersProfile)
+        public bool SaveUser(User user)
         {
-            repo.Insert(usersProfile);
-            db.SaveChanges();
-            return usersProfile;
+            bool success = true;
+            try
+            {
+                _repo.Insert(user);
+                _db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                success = false;
+            }
+            return success;
         }
     }
 }
