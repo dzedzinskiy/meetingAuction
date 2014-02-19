@@ -2,14 +2,39 @@
 @{
     Layout = null;
 }
+
+<script>
+    $(document).ready(function() {
+        var nav = $("#header");
+        var win = $(window);
+        var ava = $("#ava");
+
+        function resizeAva() {
+            var winWidth = win.width();
+            var navWidth = nav.width();
+            if (winWidth > 735) {
+                ava.show();
+                ava.width(navWidth - 30);
+            }
+            if (winWidth < 736) {
+                ava.hide();
+            }
+        };
+        $(window).resize(function() {
+            resizeAva();
+        }).resize();
+    });
+    
+</script>
+
 <!-- Header -->
 <div id="header" class="skel-panels-fixed">
     <div class="top">
         <!-- Logo -->
         <div style="float:left;display: block; width: 100%;">
-            <div style="float: left;">
-                <img src="@Model.Profile.AvatarPath" width="120" height="120" style="margin:15px;" alt="" />
-            </div>
+                <div style="float: left;">
+                    <img id="ava" src="@Model.Profile.AvatarPath" style="margin:15px;" alt="" />
+                </div>
             <!-- Nav -->
             <nav id="nav1" style="float:right">
                 <ul>
@@ -98,25 +123,31 @@
 </div>*@
 
 <style>
+    /*#header {
+        min-width: 300px;
+        max-width: 300px;
+    }*/    
+
      #header .text {
          font-size: 15px;
          padding: 0 10px;
          color: rgba(255,255,255,0.5);
          text-align: center;
      }
-
+/*
      #header .minimized {
          padding: 0;
          margin: 0;
          line-height: 0;
      }
-
+*/
      #nav1 {
          padding-top: 15px;
-         width: 90px;
+         width: 100%;
          float: right;
+         text-align: center;
      }
-
+/*
     #nav1 ul li a.active {
         background: #000000;
         background: rgba(0,0,0,0.15);
@@ -143,9 +174,9 @@
         font-size: 15px;
         line-height: 20px;
         padding: 2px 0;
-    }
+    }*/
 
-    #nav ul li a:before {
+    /*#nav ul li a:before {
         position: absolute;
         left: 0;
         color: #41484c;
@@ -156,8 +187,9 @@
     #nav ul li a {
         font-size: 20px;
         padding: 2px 0;
-    }
-    #nav ul li a span {
+    }*/
+
+    /*#nav ul li a span {
         line-height: 20px;
         font-size: 15px;
     }
@@ -165,6 +197,5 @@
     #nav,#nav1 ul {
         margin: 0;
         padding-right: 15px;
-    }
-
+    }*/
 </style>

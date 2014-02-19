@@ -71,11 +71,4 @@ namespace MeetingAuction.Controllers
             return View(user);
         }
     }
-
-    public class NavbarViewModel
-    {
-        public string ImageLink { get; set; }
-        public string Name { get; set; }
-        public bool IsProfilePage { get; set; }
-    }
 }
